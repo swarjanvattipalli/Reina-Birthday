@@ -1,0 +1,249 @@
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Root / Base ──────────────────────────────────────────── */
+:root {
+  --rose:       #f43f5e;
+  --rose-light: #fda4af;
+  --rose-dark:  #be123c;
+  --pink:       #ec4899;
+  --pink-light: #f9a8d4;
+  --gold:       #f59e0b;
+  --gold-light: #fcd34d;
+  --cream:      #fff7ed;
+  --glass-bg:   rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(244,63,94,.5); border-radius: 4px; }
+
+/* ── Animated Gradient Backgrounds ───────────────────────── */
+.bg-romantic-gate {
+  background: linear-gradient(135deg, #1a0a0f 0%, #3d0c1a 25%, #2d0d24 50%, #1a0a22 75%, #0d0a1a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.bg-romantic-celebration {
+  background: linear-gradient(135deg, #1a0510 0%, #2d0920 30%, #1a0a1a 60%, #0f0510 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+/* ── Glassmorphism Card ───────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.glass-card-dark {
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(244,63,94,0.2);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+.font-display { font-family: 'Playfair Display', serif; }
+
+/* ── Shake animation (wrong password) ────────────────────── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+  20%, 40%, 60%, 80%       { transform: translateX(8px);  }
+}
+.animate-shake { animation: shake 0.5s ease-in-out; }
+
+/* ── Float animations ─────────────────────────────────────── */
+@keyframes floatUp {
+  0%   { transform: translateY(0px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(20deg); opacity: 0; }
+}
+
+@keyframes floatSway {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(-3deg); }
+  33%       { transform: translateY(-12px) translateX(6px) rotate(3deg); }
+  66%       { transform: translateY(-6px) translateX(-4px) rotate(-1deg); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+.animate-float { animation: floatGentle 3s ease-in-out infinite; }
+.animate-sway  { animation: floatSway 4s ease-in-out infinite; }
+
+/* ── Petal / heart rain ───────────────────────────────────── */
+.petal {
+  position: fixed;
+  top: -60px;
+  pointer-events: none;
+  z-index: 0;
+  animation: petalFall linear infinite;
+  user-select: none;
+}
+
+@keyframes petalFall {
+  0%   { transform: translateY(-60px) rotate(0deg) translateX(0px); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg) translateX(30px); opacity: 0; }
+}
+
+/* ── Balloon ──────────────────────────────────────────────── */
+@keyframes balloonFloat {
+  0%   { transform: translateY(110vh) rotate(-3deg); }
+  100% { transform: translateY(-20vh) rotate(3deg);  }
+}
+.balloon {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  animation: balloonFloat linear infinite;
+}
+
+/* ── Sparkle ──────────────────────────────────────────────── */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg);   }
+  50%       { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  animation: sparkle ease-in-out infinite;
+}
+
+/* ── Candle flame ─────────────────────────────────────────── */
+@keyframes flicker {
+  0%,100% { transform: scaleX(1)   scaleY(1)    rotate(-1deg); }
+  25%      { transform: scaleX(.9)  scaleY(1.1)  rotate(1deg);  }
+  50%      { transform: scaleX(1.1) scaleY(.95)  rotate(-2deg); }
+  75%      { transform: scaleX(.95) scaleY(1.05) rotate(2deg);  }
+}
+.flame { animation: flicker 0.15s ease-in-out infinite; }
+
+@keyframes smokeRise {
+  0%   { transform: translateY(0)    scaleX(1);   opacity: .8; }
+  100% { transform: translateY(-60px) scaleX(2.5); opacity: 0;  }
+}
+.smoke { animation: smokeRise 1.2s ease-out forwards; }
+
+/* ── Typewriter cursor ────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor { animation: blink 1s step-end infinite; }
+
+/* ── Glow pulse ───────────────────────────────────────────── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(244,63,94,.4), 0 0 40px rgba(244,63,94,.2); }
+  50%       { box-shadow: 0 0 30px rgba(244,63,94,.7), 0 0 60px rgba(244,63,94,.4); }
+}
+.glow-pulse { animation: glowPulse 2s ease-in-out infinite; }
+
+/* ── PIN input ────────────────────────────────────────────── */
+.pin-input {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 14px 12px;
+}
+.pin-input:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(244,63,94,0.25), 0 0 16px rgba(244,63,94,0.2);
+}
+.pin-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.3);
+}
+.pin-input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: .1rem; font-size: 1rem; }
+
+/* ── Luxury button ────────────────────────────────────────── */
+.btn-luxury {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 50%, #be123c 100%);
+  box-shadow: 0 4px 20px rgba(244,63,94,0.45), 0 1px 0 rgba(255,255,255,0.1) inset;
+  transition: transform .18s, box-shadow .18s;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+}
+.btn-luxury:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,63,94,.55); }
+.btn-luxury:active { transform: translateY(0);    box-shadow: 0 2px 12px rgba(244,63,94,.4);  }
+
+.btn-outline {
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(244,63,94,0.5);
+  color: #fda4af;
+  transition: background .18s, border-color .18s, transform .18s;
+  cursor: pointer;
+}
+.btn-outline:hover  { background: rgba(244,63,94,0.15); border-color: #f43f5e; transform: translateY(-2px); color: #fff; }
+.btn-outline:active { transform: translateY(0); }
+
+/* ── Music player ─────────────────────────────────────────── */
+.music-btn {
+  background: linear-gradient(135deg, rgba(244,63,94,.7), rgba(190,18,60,.7));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform .2s, box-shadow .2s;
+}
+.music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(244,63,94,0.4); }
+
+/* ── Image frame ──────────────────────────────────────────── */
+.image-frame {
+  border: 2px solid rgba(244,63,94,0.3);
+  box-shadow:
+    0 0 0 4px rgba(244,63,94,0.08),
+    0 16px 48px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* ── Responsive helpers ───────────────────────────────────── */
+@media (max-width: 640px) {
+  .font-display { line-height: 1.2; }
+}
